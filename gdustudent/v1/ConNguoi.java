@@ -1,16 +1,16 @@
 package com.gdustudent.v1;
 
 import java.text.DateFormat;
+import java.lang.*;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
 public abstract class ConNguoi {
 	private String ten;
-	private int tuoi;
 	private boolean gioiTinh;
 	private Date ngaySinh;
-	private String diaChi;
+	private String diaChi = null;
 	private String sdt;
 	private String chucVu;
 	private String quocTich;
@@ -20,11 +20,10 @@ public abstract class ConNguoi {
 
 	}
 
-	public ConNguoi(String ten, int tuoi, boolean gioiTinh, String ngaySinh, String diaChi, String sdt, String chucVu,
+	public ConNguoi(String ten, boolean gioiTinh, String ngaySinh, String diaChi, String sdt, String chucVu,
 			String quocTich, String ghiChu) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		this.ten = ten;
-		this.tuoi = tuoi;
 		this.gioiTinh = gioiTinh;
 		try {
 			this.ngaySinh = df.parse(ngaySinh);
@@ -46,14 +45,6 @@ public abstract class ConNguoi {
 		this.ten = ten;
 	}
 
-	protected int getTuoi() {
-		return tuoi;
-	}
-
-	protected void setTuoi(int tuoi) {
-		this.tuoi = tuoi;
-	}
-
 	protected boolean isGioiTinh() {
 		return gioiTinh;
 	}
@@ -63,7 +54,7 @@ public abstract class ConNguoi {
 	}
 
 	protected Date getNgaySinh() {
-		return ngaySinh;
+		return this.ngaySinh;
 	}
 
 	protected void setNgaySinh(Date ngaySinh) {
@@ -110,6 +101,33 @@ public abstract class ConNguoi {
 		this.ghiChu = ghiChu;
 	}
 
+	protected void taoThongTin() throws ParseException {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		TestDrive.sc.nextLine();
+		System.out.println("Họ tên: ");
+		this.ten = TestDrive.sc.nextLine();
+		System.out.println("Ngày sinh: ");
+		this.ngaySinh = df.parse(TestDrive.sc.nextLine());
+		System.out.println("Giới tính: 1/Nam || 2/Nữ ");
+		if (TestDrive.sc.nextLine().equalsIgnoreCase("1")) {
+			this.gioiTinh = true;
+		} else if (TestDrive.sc.nextLine().equalsIgnoreCase("2")) {
+			this.gioiTinh = false;
+		}
+		System.out.println("Địa chỉ: ");
+		this.diaChi = TestDrive.sc.nextLine();
+		do {
+			System.out.println("Số điện thoại: ");
+			this.sdt = TestDrive.sc.nextLine();
+		}while(this.sdt.length() != 10);
+		System.out.println("Chức vụ: ");
+		this.chucVu = TestDrive.sc.nextLine();
+		System.out.println("Quốc tịch: ");
+		this.quocTich = TestDrive.sc.nextLine();
+		System.out.println("Ghi chú: ");
+		this.ghiChu = TestDrive.sc.nextLine();
+	}
+
 	protected void hienThiTT() {
 		String gt;
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -118,7 +136,7 @@ public abstract class ConNguoi {
 		} else {
 			gt = "Nữ";
 		}
-		System.out.printf("%-15s%8d%10s%15s%15s%15s%15s%15s%15s\n", this.ten, this.tuoi, gt, df.format(this.ngaySinh),
-				this.diaChi, this.sdt, this.chucVu, this.quocTich, this.ghiChu);
+		System.out.printf("%-15s%10s%15s%15s%15s%15s%15s%15s\n", this.ten, gt, df.format(this.ngaySinh), this.diaChi,
+				this.sdt, this.chucVu, this.quocTich, this.ghiChu);
 	}
 }

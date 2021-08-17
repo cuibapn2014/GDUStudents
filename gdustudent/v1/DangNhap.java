@@ -1,13 +1,15 @@
 package com.gdustudent.v1;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DangNhap {
 	private String taiKhoan;
 	private String matKhau;
+	private boolean trangThai = false;
+	private TaiKhoan tk;
 
 	public DangNhap() {
+
 	}
 
 	public DangNhap(String taiKhoan, String matKhau) {
@@ -31,13 +33,32 @@ public class DangNhap {
 		this.matKhau = matKhau;
 	}
 
+	public boolean getTrangThai() {
+		return this.trangThai;
+	}
+
+	public TaiKhoan getTk() {
+		return this.tk;
+	}
+
 	public void dangNhap() throws SQLException {
 		System.out.println("-----------Chào mừng bạn đến với GDUStudents-----------");
 		System.out.println("___________________ ĐĂNG NHẬP___________________");
 		System.out.println("- Tên Tài Khoản: ");
-		this.taiKhoan = nhap.nextLine();
+		this.taiKhoan = TestDrive.sc.nextLine();
 		System.out.println("- Mật Khẩu: ");
-		this.matKhau = nhap.nextLine();
+		this.matKhau = TestDrive.sc.nextLine();
+		if (tk.xacThuc(taiKhoan, matKhau)) {
+			this.trangThai = true;
+			System.out.println("Đăng nhập thành công");
+		} else {
+			this.trangThai = false;
+			System.out.println("Đăng nhập thất bại");
+		}
+	}
+
+	public void dangXuat() {
+		this.trangThai = false;
 	}
 
 }

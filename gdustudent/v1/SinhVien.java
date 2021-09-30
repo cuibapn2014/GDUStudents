@@ -12,9 +12,9 @@ public class SinhVien extends ConNguoi {
 
 	}
 
-	public SinhVien(int mssv, String lop, String khoa,String ten, boolean gioiTinh, String ngaySinh, String diaChi, String sdt,
-			String chucVu, String quocTich, String ghiChu) {
-		super(ten, gioiTinh, ngaySinh, diaChi, sdt, chucVu, quocTich, ghiChu);
+	public SinhVien(int mssv, String lop, String khoa, String ten, boolean gioiTinh, String ngaySinh, String diaChi,
+			String sdt, String quocTich) {
+		super(ten, gioiTinh, ngaySinh, diaChi, sdt, quocTich);
 		this.mssv = mssv;
 		this.lop = lop;
 		this.khoa = khoa;
@@ -48,25 +48,4 @@ public class SinhVien extends ConNguoi {
 		this.khoa = khoa;
 	}
 
-	@Override
-	protected void taoThongTin() throws ParseException {
-		super.taoThongTin();
-		System.out.println("Mã số sinh viên: ");
-		this.mssv = TestDrive.sc.nextInt();
-		TestDrive.sc.nextLine();
-		do {
-			System.out.println("Lớp: ");
-			this.lop = TestDrive.sc.nextLine();
-		}while(this.lop.length() > 10);
-		System.out.println("Khoa: ");
-		this.khoa = TestDrive.sc.nextLine();
-	}
-
-	@Override
-	protected void hienThiTT() {
-		System.out.println("MSSV: " + this.mssv);
-		System.out.println("Lớp: " + this.lop);
-		System.out.println("Khoa: " + this.khoa);
-		super.hienThiTT();
-	}
 }

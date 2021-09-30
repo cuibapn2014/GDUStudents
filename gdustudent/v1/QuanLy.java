@@ -7,12 +7,14 @@ public abstract class QuanLy<T> {
 
 	}
 
-	public abstract void them(T object);
+	public abstract List<T> hienThiDS();
 
-	public abstract void chinhSua(T object);
+	protected abstract void them(T object);
+
+	protected abstract void chinhSua(T object);
 
 	public abstract void xoa(T object);
 
-	public abstract void timKiem(T object);
+	public abstract List<T> timKiem(T object);
 
 }

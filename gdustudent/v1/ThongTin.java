@@ -2,85 +2,85 @@ package com.gdustudent.v1;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public abstract class ThongTin {
-    private String tieuDe;
-    private Date ngayTao;
-    private String nguoiViet;
-    private String noiDung;
-    private String danhMuc;
+	private int id;
+	private String tieuDe;
+	private Date ngayTao;
+	private String nguoiViet;
+	private String noiDung;
+	private String danhMuc;
+	KetNoiCSDL data;
 
-    public ThongTin() {
-    }
+	public ThongTin() {
+	}
 
-    public ThongTin(String tieuDe, String ngayTao, String nguoiViet, String noiDung, String danhMuc)
-            throws ParseException {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        this.tieuDe = tieuDe;
-        this.ngayTao = df.parse(ngayTao);
-        this.nguoiViet = nguoiViet;
-        this.noiDung = noiDung;
-        this.danhMuc = danhMuc;
-    }
+	public ThongTin(String tieuDe, String ngayTao, String noiDung, String danhMuc) throws ParseException {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		this.tieuDe = tieuDe;
+		this.ngayTao = df.parse(ngayTao);
+		this.noiDung = noiDung;
+		this.danhMuc = danhMuc;
+	}
 
-    protected String getTieuDe() {
-        return this.tieuDe;
-    }
+	public ThongTin(String tieuDe, String ngayTao, String nguoiViet, String noiDung, String danhMuc)
+			throws ParseException {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		this.tieuDe = tieuDe;
+		this.ngayTao = df.parse(ngayTao);
+		this.noiDung = noiDung;
+		this.danhMuc = danhMuc;
+		this.nguoiViet = nguoiViet;
+	}
 
-    protected void setTieuDe(String tieuDe) {
-        this.tieuDe = tieuDe;
-    }
+	protected String getTieuDe() {
+		return this.tieuDe;
+	}
 
-    protected Date getNgayTao() {
-        return this.ngayTao;
-    }
+	protected void setTieuDe(String tieuDe) {
+		this.tieuDe = tieuDe;
+	}
 
-    protected void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
+	protected Date getNgayTao() {
+		return this.ngayTao;
+	}
 
-    protected String getNguoiViet() {
-        return this.nguoiViet;
-    }
+	protected void setNgayTao(Date ngayTao) {
+		this.ngayTao = ngayTao;
+	}
 
-    protected void setNguoiViet(String nguoiViet) {
-        this.nguoiViet = nguoiViet;
-    }
+	protected String getNguoiViet() {
+		return this.nguoiViet;
+	}
 
-    protected String getNoiDung() {
-        return this.noiDung;
-    }
+	protected String getNoiDung() {
+		return this.noiDung;
+	}
 
-    protected void setNoiDung(String noiDung) {
-        this.noiDung = noiDung;
-    }
+	protected void setNoiDung(String noiDung) {
+		this.noiDung = noiDung;
+	}
 
-    protected String getDanhMuc() {
-        return this.danhMuc;
-    }
+	protected String getDanhMuc() {
+		return this.danhMuc;
+	}
 
-    protected void setDanhMuc(String danhMuc) {
-        this.danhMuc = danhMuc;
-    }
+	protected void setDanhMuc(String danhMuc) {
+		this.danhMuc = danhMuc;
+	}
 
-    public String hienThi() {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return "\nTiêu đề: " + this.tieuDe + "\nNgày tạo: " + df.format(this.ngayTao) + "\nNgười viết: "
-                + this.nguoiViet + "\nNội dung: " + this.noiDung + "\nDanh mục" + this.danhMuc;
-    }
+	protected int getId() {
+		return id;
+	}
 
-    protected void tao() throws ParseException {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println("Nhập tiêu đề: ");
-        this.tieuDe = TestDrive.sc.nextLine();
-        this.ngayTao = df.parse(df.format(LocalDate.now()));
-        System.out.println("Nhập danh mục: ");
-        this.danhMuc = TestDrive.sc.nextLine();
-        System.out.println("Nhập nội dung");
-        this.noiDung = TestDrive.sc.nextLine();
-    }
+	protected void setId(int id) {
+		this.id = id;
+	}
+
 }
